@@ -1,6 +1,7 @@
 import os
 
 from django import forms
+from .models import Diary
 from django.core.mail import EmailMessage
 
 class InquiryForm(forms.Form):
@@ -42,3 +43,13 @@ class InquiryForm(forms.Form):
 
         message = EmailMessage(subject=subject,body=message,from_email=from_email,to=to_list,cc=cc_list)
         message.send()
+
+class DiaryCreateForm(forms.ModelForm):
+    class Meta:
+        model = Diary
+        fields = ('title', 'content', 'photo1', 'photo2', 'photo3',)
+
+        def __int__(self, *args, **kwargs):
+            super().__int__(*args, **kwargs)
+            for field in self.fields.values():
+                field.widget.attrs['class'] = 'form-control'
