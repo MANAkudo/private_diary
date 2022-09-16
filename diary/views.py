@@ -35,7 +35,6 @@ class DiaryListView(LoginRequiredMixin, generic.ListView):
 class DiaryDetailView(LoginRequiredMixin,generic.DetailView):
     model = Diary
     template_name = 'diary_detail.html'
-    pk_url_kwarg = 'id'
 
 class DiaryCreateView(LoginRequiredMixin,generic.CreateView):
     model = Diary
